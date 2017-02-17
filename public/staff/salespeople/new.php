@@ -25,7 +25,7 @@ if(is_post_request()) {
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 <div id="main-content">
-  <a href="#add_a_url">Back to Salespeople List</a><br />
+  <a href="index.php">Back to Salespeople List</a><br />
 
   <h1>New Salesperson</h1>
 
@@ -36,7 +36,7 @@ if(is_post_request()) {
     <input type="text" name="first_name" value="<?php echo $salesperson['first_name']; ?>" /><br />
     Last name:<br />
     <input type="text" name="last_name" value="<?php echo $salesperson['last_name']; ?>" /><br />
-    Username:<br />
+    Phone Number:<br />
     <input type="text" name="phone" value="<?php echo $salesperson['phone']; ?>" /><br />
     Email:<br />
     <input type="text" name="email" value="<?php echo $salesperson['email']; ?>" /><br />

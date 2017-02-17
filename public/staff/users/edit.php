@@ -19,14 +19,15 @@ if(is_post_request()) {
   if(isset($_POST['username'])) { $user['username'] = $_POST['username']; }
   if(isset($_POST['email'])) { $user['email'] = $_POST['email']; }
 
-  //include(USER_PATH . '/validation.php'); 
+  //include(USER_PATH . '/validation.php');
 
   $result = update_user($user);
-  if($result === true) {
+  $errors = on_db_success($result);
+  /*if($result === true) {
     redirect_to('show.php?id=' . $user['id']);
   } else {
     $errors = $result;
-  }
+  }*/
 }
 ?>
 <?php $page_title = 'Staff: Edit User ' . $user['first_name'] . " " . $user['last_name']; ?>

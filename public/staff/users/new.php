@@ -19,12 +19,13 @@ if(is_post_request()) {
   if(isset($_POST['email'])) { $user['email'] = $_POST['email']; }
 
   $result = insert_user($user);
-  if($result === true) {
+  $errors = on_db_success($result);
+  /*if($result === true) {
     $new_id = db_insert_id($db);
     redirect_to('show.php?id=' . $new_id);
   } else {
     $errors = $result;
-  }
+  }*/
 }
 ?>
 <?php $page_title = 'Staff: New User'; ?>

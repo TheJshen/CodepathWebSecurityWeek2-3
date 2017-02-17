@@ -29,7 +29,7 @@
       echo "<a href=\"show.php?id=" . $salesperson['id'] . "\">Show</a>";
       echo "</td>";
       echo "<td>";
-      echo "<a href=\"edit.php\">Edit</a>";
+      echo "<a href=\"edit.php?id=" . $salesperson['id'] . "\">Edit</a>";
       echo "</td>";
       echo "</tr>";
     } // end while $salesperson

@@ -39,7 +39,7 @@
 
   // checks that phone numbers only contain whitelisted characters
   function has_valid_phone_number_whitelist($value) {
-    return preg_match('/\A[\d\-\(\)\s]+\Z/', $value);
+    return preg_match('/\A[\d\-\s]+\Z/', $value);
   }
 
   // checks that email contains only whitelisted characters
@@ -64,7 +64,8 @@
   // Both US and canada has the same (3 digita area code) 7 digit number
   // This function will just check if there are 10 numeric digits
   function has_valid_phone_number_format($value) {
-
+    // TODO:
+    return true;
   }
 
 ?>
