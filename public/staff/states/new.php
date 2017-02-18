@@ -11,12 +11,14 @@ $state = array(
 );
 
 if(is_post_request()) {
-  if(isset($_POS['name'])) { $state['name'] = $_POST['name']; }
-  if(isset($_POS['code'])) { $state['code'] = $_POST['code']; }
-  if(isset($_POS['country_id'])) { $state['country_id'] = $_POST['country_id']; }
+
+  if(isset($_POST['name'])) { $state['name'] = $_POST['name']; }
+  if(isset($_POST['code'])) { $state['code'] = $_POST['code']; }
+  if(isset($_POST['country_id'])) { $state['country_id'] = $_POST['country_id']; }
 
   $result = insert_state($state);
   $errors = on_db_success($result);
+
 }
 ?>
 <?php $page_title = 'Staff: New State'; ?>

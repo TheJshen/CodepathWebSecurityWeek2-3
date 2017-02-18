@@ -68,4 +68,12 @@
     return true;
   }
 
+  function has_valid_state_code_format($value) {
+    return preg_match('/\A[A-Z]+\Z/', $value);
+  }
+
+  function has_valid_country_id_format($value) {
+    return is_numeric($value);
+  }
+
 ?>

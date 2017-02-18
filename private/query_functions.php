@@ -46,6 +46,27 @@
 
   function validate_state($state, $errors=array()) {
     // TODO add validations
+    if (is_blank($state['name'])) {
+      $errors[] = "Name cannot be blank.";
+    } elseif (!has_length($state['name'], array('min' => 2, 'max' => 255))) {
+      $errors[] = "Name must be between 2 and 255 characters.";
+    } elseif(!has_valid_name_format($state['name'])) {
+      $errors[] = "Name must contain letters, spaces, and the symbol '-'.";
+    }
+
+    if (is_blank($state['code'])) {
+      $errors[] = "State code cannot be blank.";
+    } elseif (!has_length($state['code'], array('min' => 2, 'max' => 2))) {
+      $errors[] = "State code must be between 2 characters.";
+    } elseif(!has_valid_state_code_format($state['code'])) {
+      $errors[] = "Must only contain capital letters.";
+    }
+
+    if (is_blank($state['country_id'])) {
+      $errors[] = "Country ID cannot be blank.";
+    } elseif (!has_valid_country_id_format($state['country_id'])) {
+      $errors[] = "Country ID must be a number.";
+    }
 
     return $errors;
   }
@@ -60,7 +81,13 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "INSERT INTO states "; // TODO add SQL
+    $sql .= "(name, code, country_id) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . $state['name'] . "',";
+    $sql .= "'" . $state['code'] . "',";
+    $sql .= "'" . $state['country_id'] . "'";
+    $sql .= ");";
     // For INSERT statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
@@ -84,7 +111,12 @@
       return $errors;
     }
 
-    $sql = ""; // TODO add SQL
+    $sql = "UPDATE states SET "; // TODO add SQL
+    $sql .= "name='" . $state['name'] . "', ";
+    $sql .= "code='" . $state['code'] . "', ";
+    $sql .= "country_id='" . $state['country_id'] . "' ";
+    $sql .= "WHERE id='" . $state['id'] . "' ";
+    $sql .= "LIMIT 1;";
     // For update_state statments, $result is just true/false
     $result = db_query($db, $sql);
     if($result) {
