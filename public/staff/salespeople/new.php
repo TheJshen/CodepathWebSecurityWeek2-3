@@ -17,7 +17,12 @@ if(is_post_request()) {
   if(isset($_POST['email'])) { $salesperson['email'] = $_POST['email']; }
 
   $result = insert_salesperson($salesperson);
-  $errors = on_db_success($result);
+  if($result === true) {
+    $new_id = db_insert_id($db);
+    redirect_to('show.php?id=' . $new_id);
+  } else {
+    $errors = $result;
+  }
 }
 ?>
 

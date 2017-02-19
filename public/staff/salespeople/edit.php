@@ -20,7 +20,11 @@ if(is_post_request()) {
   if(isset($_POST['email'])) { $salesperson['email'] = $_POST['email']; }
 
   $result = update_salesperson($salesperson);
-  $errors = on_db_success($result);
+  if($result === true) {
+    redirect_to('show.php?id=' . $salesperson['id']);
+  } else {
+    $errors = $result;
+  }
 }
 ?>
 <?php $page_title = 'Staff: Edit Salesperson ' . $salesperson['first_name'] . " " . $salesperson['last_name']; ?>

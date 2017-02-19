@@ -54,13 +54,4 @@
     return mysqli_real_escape_string($connection, $string);
   }
 
-  // checks result of db query and then redirects or returns an error
-  function on_db_success($result) {
-    if($result === true) {
-      $new_id = db_insert_id($db);
-      redirect_to('show.php?=' . $new_id);
-    } else {
-      return $errors = $result;
-    }
-  }
 ?>

@@ -22,12 +22,11 @@ if(is_post_request()) {
   //include(USER_PATH . '/validation.php');
 
   $result = update_user($user);
-  $errors = on_db_success($result);
-  /*if($result === true) {
+  if($result === true) {
     redirect_to('show.php?id=' . $user['id']);
   } else {
     $errors = $result;
-  }*/
+  }
 }
 ?>
 <?php $page_title = 'Staff: Edit User ' . $user['first_name'] . " " . $user['last_name']; ?>

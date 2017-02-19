@@ -17,8 +17,11 @@ if(is_post_request()) {
   if(isset($_POST['country_id'])) { $state['country_id'] = $_POST['country_id']; }
 
   $result = update_state($state);
-  $errors = on_db_success($result);
-
+  if($result === true) {
+    redirect_to('show.php?id=' . $state['id']);
+  } else {
+    $errors = $result;
+  }
 }
 ?>
 <?php $page_title = 'Staff: Edit State ' . $state['name']; ?>
