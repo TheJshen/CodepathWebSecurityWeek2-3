@@ -32,11 +32,11 @@
 
     <div class="details">
       <?php
-        echo h($person['first_name']) . " " . h($person['last_name']);
+        echo h(s($person['first_name'])) . " " . h(s($person['last_name']));
         echo "<br />";
-        echo h($person['phone']);
+        echo h(s($person['phone']));
         echo "<br />";
-        echo h($person['email']);
+        echo h(s($person['email']));
         echo "<br />";
       ?>
     </div>
@@ -49,7 +49,7 @@
         $territories_result = find_territories_by_salesperson_id($id);
         echo "<ul id=\"territories\">";
         while($territory = db_fetch_assoc($territories_result)) {
-          echo "<li>" . h($territory['name']) . "</li>";
+          echo "<li>" . h(s($territory['name'])) . "</li>";
         }
         db_free_result($territories_result);
         echo "</ul>";

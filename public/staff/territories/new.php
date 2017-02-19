@@ -10,16 +10,19 @@ $territory = array(
   'position' => ''
 );
 
+if(isset($_GET['id'])) {
+  $territory['state_id'] = $_GET['id'];
+}
+
 if(is_post_request()) {
 
   if(isset($_POST['name'])) { $territory['name'] = $_POST['name']; }
-  if(isset($_POST['state_id'])) { $territory['state_id'] = $_POST['state_id']; }
   if(isset($_POST['position'])) { $territory['position'] = $_POST['position']; }
 
   $result = insert_territory($territory);
   if($result === true) {
     $new_id = db_insert_id($db);
-    redirect_to('show.php?id=' . $new_id);
+    redirect_to('show.php?id=' . u($new_id));
   } else {
     $errors = $result;
   }
@@ -29,19 +32,17 @@ if(is_post_request()) {
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 <div id="main-content">
-  <a href="../states/show.php?id=<?php echo $_GET['id']?>">Back to State Details</a><br />
+  <a href="../states/show.php?id=<?php echo h(s($_GET['id']))?>">Back to State Details</a><br />
 
   <h1>New Territory</h1>
 
   <?php echo display_errors($errors); ?>
 
-  <form action="new.php" method="post">
+  <form action="new.php?id=<?php echo h(s(u($territory['state_id']))); ?>" method="post">
     Territory Name:<br />
-    <input type="text" name="name" value="<?php echo $territory['name']; ?>" /><br />
-    State ID:<br />
-    <input type="text" name="state_id" value="<?php echo $territory['state_id']; ?>" /><br />
+    <input type="text" name="name" value="<?php echo h(s($territory['name'])); ?>" /><br />
     Position:<br />
-    <input type="text" name="position" value="<?php echo $territory['position']; ?>" /><br />
+    <input type="text" name="position" value="<?php echo h(s($territory['position'])); ?>" /><br />
     <br />
     <input type="submit" name="submit" value="Create" />
   </form>

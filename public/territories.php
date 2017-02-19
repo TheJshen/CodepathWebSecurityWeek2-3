@@ -14,8 +14,8 @@
   while($country = db_fetch_assoc($country_result)) {
     echo "<li>";
     // Output state name
-    echo h($country['name']);
-    echo " (" . h($country['code']) . ")";
+    echo h(s($country['name']));
+    echo " (" . h(s($country['code'])) . ")";
 
     $state_result = find_states_for_country_id($country['id']);
 
@@ -24,8 +24,8 @@
     while($state = db_fetch_assoc($state_result)) {
       echo "<li>";
       // Output state name
-      echo h($state['name']);
-      echo " (" . h($state['code']) . ")";
+      echo h(s($state['name']));
+      echo " (" . h(s($state['code'])) . ")";
 
       $territory_result = find_territories_for_state_id($state['id']);
 
@@ -35,16 +35,16 @@
         echo "<li>";
         // Output territory name (if different from state)
         if($territory['name'] != $state['name']) {
-          echo h($territory['name']) . "<br />";
+          echo h(s($territory['name'])) . "<br />";
         }
 
         $salespeople_result = find_salespeople_for_territory_id($territory['id']);
 
         while($person = db_fetch_assoc($salespeople_result)) {
           echo "<span class=\"salesperson\">";
-          $url = 'salesperson.php?id=' . u($person['id']);
+          $url = 'salesperson.php?id=' . h(s(u($person['id'])));
           echo "<a href=\"" . h($url) . "\">";
-          echo h($person['first_name']) . " " . h($person['last_name']);
+          echo h(s($person['first_name'])) . " " . h(s($person['last_name']));
           echo "</a>";
           echo "</span>";
           echo "<br />";

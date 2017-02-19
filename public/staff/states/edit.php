@@ -18,7 +18,7 @@ if(is_post_request()) {
 
   $result = update_state($state);
   if($result === true) {
-    redirect_to('show.php?id=' . $state['id']);
+    redirect_to('show.php?id=' . u($state['id']));
   } else {
     $errors = $result;
   }
@@ -28,17 +28,17 @@ if(is_post_request()) {
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 <div id="main-content">
-  <a href="index.php">Back to States List</a><br />
+  <a href="show.php?id=<?php echo h(s(u($state['id'])))?>">Cancel</a><br />
 
-  <h1>Edit State: <?php echo $state['name']; ?></h1>
+  <h1>Edit State: <?php echo h(s($state['name'])); ?></h1>
 
-  <form action="edit.php?id=<?php echo $state['id']; ?>" method="post">
+  <form action="edit.php?id=<?php echo h(s(u($state['id']))); ?>" method="post">
     State Name:<br />
-    <input type="text" name="name" value="<?php echo $state['name']; ?>" /><br />
+    <input type="text" name="name" value="<?php echo h(s($state['name'])); ?>" /><br />
     State Code:<br />
-    <input type="text" name="code" value="<?php echo $state['code']; ?>" /><br />
+    <input type="text" name="code" value="<?php echo h(s($state['code'])); ?>" /><br />
     Country ID:<br />
-    <input type="text" name="country_id" value="<?php echo $state['country_id']; ?>" /><br />
+    <input type="text" name="country_id" value="<?php echo h(s($state['country_id'])); ?>" /><br />
     <br />
     <input type="submit" name="submit" value="Update" />
   </form>

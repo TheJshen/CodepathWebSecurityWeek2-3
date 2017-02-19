@@ -8,6 +8,10 @@
     return urlencode($string);
   }
 
+  function s($string="") {
+    return strip_tags($string);
+  }
+
   function raw_u($string="") {
     return rawurlencode($string);
   }

@@ -3,6 +3,7 @@
 
   function db_connect() {
     $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+    //$connection->mysqli_set_charset('utf8'); // sets the charset for real_escape_string
     if(mysqli_connect_errno()) {
       $msg = "Database connection failed: ";
       $msg .= mysqli_connect_error();
@@ -13,6 +14,7 @@
   }
 
   function db_query($connection, $sql) {
+    //$result_set = mysqli_query($connection, mysqli_real_escape_string($connection, $sql));
     $result_set = mysqli_query($connection, $sql);
     if(substr($sql, 0, 7) == 'SELECT ') {
       confirm_query($result_set);

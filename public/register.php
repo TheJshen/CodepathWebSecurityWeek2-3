@@ -50,10 +50,10 @@
       $sql .= "VALUES (";
       // Note that there is no SQL sanitization used here yet.
       // That will be a topic for later in the week.
-      $sql .= "'" . $first_name . "',";
-      $sql .= "'" . $last_name . "',";
-      $sql .= "'" . $email . "',";
-      $sql .= "'" . $username . "',";
+      $sql .= "'" . $db->real_escape_string($first_name) . "',";
+      $sql .= "'" . $db->real_escape_string($last_name) . "',";
+      $sql .= "'" . $db->real_escape_string($email) . "',";
+      $sql .= "'" . $db->real_escape_string($username) . "',";
       $sql .= "'" . $created_at . "'";
       $sql .= ")";
 
@@ -86,13 +86,13 @@
 
   <form action="register.php" method="post">
     First name:<br />
-    <input type="text" name="first_name" value="<?php echo h($first_name); ?>" /><br />
+    <input type="text" name="first_name" value="<?php echo h(s($first_name)); ?>" /><br />
     Last name:<br />
-    <input type="text" name="last_name" value="<?php echo h($last_name); ?>" /><br />
+    <input type="text" name="last_name" value="<?php echo h(s($last_name)); ?>" /><br />
     Email:<br />
-    <input type="text" name="email" value="<?php echo h($email); ?>" /><br />
+    <input type="text" name="email" value="<?php echo h(s($email)); ?>" /><br />
     Username:<br />
-    <input type="text" name="username" value="<?php echo h($username); ?>" /><br />
+    <input type="text" name="username" value="<?php echo h(s($username)); ?>" /><br />
     <br />
     <input type="submit" name="submit" value="Submit"  />
   </form>

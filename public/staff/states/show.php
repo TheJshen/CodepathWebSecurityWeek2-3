@@ -16,31 +16,31 @@ $state = db_fetch_assoc($state_result);
 <div id="main-content">
   <a href="index.php">Back to States List</a><br />
 
-  <h1>State: <?php echo $state['name']; ?></h1>
+  <h1>State: <?php echo h(s($state['name'])); ?></h1>
 
   <?php
     echo "<table id=\"state\">";
     echo "<tr>";
     echo "<td>Name: </td>";
-    echo "<td>" . $state['name'] . "</td>";
+    echo "<td>" . h(s($state['name'])) . "</td>";
     echo "</tr>";
     echo "<tr>";
     echo "<td>Code: </td>";
-    echo "<td>" . $state['code'] . "</td>";
+    echo "<td>" . h(s($state['code'])) . "</td>";
     echo "</tr>";
     echo "<tr>";
     echo "<td>Country ID: </td>";
-    echo "<td>" . $state['country_id'] . "</td>";
+    echo "<td>" . h(s($state['country_id'])) . "</td>";
     echo "</tr>";
     echo "</table>";
   ?>
     <br />
-    <a href="edit.php?id=<?php echo $state['id']; ?>">Edit</a><br />
+    <a href="edit.php?id=<?php echo h(s(u($state['id']))); ?>">Edit</a><br />
     <hr />
 
     <h2>Territories</h2>
     <br />
-    <a href="../territories/new.php?id=<?php echo $state['id']; ?>">Add a Territory</a><br />
+    <a href="../territories/new.php?id=<?php echo h(s(u($state['id']))); ?>">Add a Territory</a><br />
 
 <?php
     $territory_result = find_territories_for_state_id($state['id']);
@@ -48,8 +48,8 @@ $state = db_fetch_assoc($state_result);
     echo "<ul id=\"territories\">";
     while($territory = db_fetch_assoc($territory_result)) {
       echo "<li>";
-      echo '<a href="../territories/show.php?id='. $territory['id'] .'">';
-      echo $territory['name'];
+      echo '<a href="../territories/show.php?id='. h(s(u($territory['id']))) .'">';
+      echo h(s($territory['name']));
       echo "</a>";
       echo "</li>";
     } // end while $territory
