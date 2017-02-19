@@ -53,27 +53,42 @@
     return preg_match('/\A[A-Za-z\-\s]+\Z/', $value);
   }
 
-  // My Custom Validation
-  // validates that the username is not already taken
-  function has_unique_username($value) {
-
-  }
-
   // My Custon Validation
   // checks phone numbers if they are of the correct format
   // Both US and canada has the same (3 digita area code) 7 digit number
   // This function will just check if there are 10 numeric digits
   function has_valid_phone_number_format($value) {
-    // TODO:
-    return true;
+    $count = preg_match_all( "/[0-9]/", $value);
+    if($count == 10) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
+  // My Custom Validation
   function has_valid_state_code_format($value) {
     return preg_match('/\A[A-Z]+\Z/', $value);
   }
 
+  // My Custom Validation
   function has_valid_country_id_format($value) {
     return is_numeric($value);
+  }
+
+  // My Custom Validation
+  function is_negative_num($value) {
+    if($value < 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // My Custom Validation
+  // validates that the username is not already taken
+  function has_unique_username($value) {
+
   }
 
 ?>

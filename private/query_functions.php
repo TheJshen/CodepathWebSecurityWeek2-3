@@ -66,6 +66,8 @@
       $errors[] = "Country ID cannot be blank.";
     } elseif (!has_valid_country_id_format($state['country_id'])) {
       $errors[] = "Country ID must be a number.";
+    } elseif (is_negative_num($state['country_id'])) {
+      $errors[] = "Country ID must be a positive number.";
     }
 
     return $errors;
@@ -175,13 +177,17 @@
     if (is_blank($territory['state_id'])) {
       $errors[] = "State ID cannot be left blank.";
     } elseif (!has_valid_country_id_format($territory['state_id'])) {
-      $errors[] = "State ID needs to be number.";
+      $errors[] = "State ID needs to be a number.";
+    } elseif (is_negative_num($territory['state_id'])) {
+      $errors[] = "State ID needs to be a positive number.";
     }
 
     if (is_blank($territory['position'])) {
       $errors[] = "Position cannot be left blank.";
     } elseif (!has_valid_country_id_format($territory['position'])) {
-      $errors[] = "Position needs to be number.";
+      $errors[] = "Position needs to be a number.";
+    } elseif (is_negative_num($territory['position'])) {
+      $errors[] = "Position needs to be a positive number.";
     }
 
     return $errors;
