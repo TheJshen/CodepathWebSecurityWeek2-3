@@ -88,7 +88,7 @@
   // My Custom Validation
   // validates that the username is not already taken
   function has_unique_username($value) {
-
+    // Not used
   }
 
 ?>
